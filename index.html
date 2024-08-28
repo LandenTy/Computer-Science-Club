@@ -55,12 +55,14 @@
         pointLight.position.set(10, 10, 10);
         scene.add(pointLight);
 
-        // Load a GLTF model
+        // Load a GLTF model from a local server
+        let model;
         const loader = new GLTFLoader();
-        loader.load('./scene.gltf', (gltf) => {
-            scene.add(gltf.scene);
-            gltf.scene.position.set(0, 0, 0); // Adjust model position as needed
-            gltf.scene.scale.set(1, 1, 1); // Adjust scale if necessary
+        loader.load('scene.gltf', (gltf) => {
+            model = gltf.scene;
+            scene.add(model);
+            model.position.set(0, 0, 0); // Adjust model position as needed
+            model.scale.set(1, 1, 1); // Adjust scale if necessary
         }, undefined, (error) => {
             console.error('An error occurred while loading the model:', error);
         });
@@ -70,6 +72,13 @@
         // Animation loop
         function animate() {
             requestAnimationFrame(animate);
+
+            // Spin the model
+            if (model) {
+                model.rotation.x += 0.01; // Adjust rotation speed as needed
+                model.rotation.y += 0.01; // Adjust rotation speed as needed
+            }
+
             renderer.render(scene, camera);
         }
 
