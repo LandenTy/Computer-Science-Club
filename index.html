@@ -95,7 +95,7 @@
     loader.load('scene.gltf', (gltf) => {
         model = gltf.scene;
         scene.add(model);
-        model.position.set(0, 0, 1); // Adjust model position as needed
+        model.position.set(0, -1, 1); // Adjust model position as needed
         model.scale.set(1.2,1.2,1.2); // Adjust scale if necessary
     }, undefined, (error) => {
         console.error('An error occurred while loading the model:', error);
