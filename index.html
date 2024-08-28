@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model with Three.js</title>
+    <style>
+        #model-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Blend with background */
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="model-container"></div>
+
+    <!-- Import Map for module resolution -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.152.0/build/three.module.js",
+        "three/examples/jsm/loaders/GLTFLoader.js": "https://cdn.jsdelivr.net/npm/three@0.152.0/examples/jsm/loaders/GLTFLoader.js"
+      }
+    }
+    </script>
+
+    <!-- Use type="module" for ES module imports -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
+        // Initialize scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+        // Adjust the renderer size and append it to the model container
+        const modelContainer = document.getElementById('model-container');
+        renderer.setSize(modelContainer.clientWidth, modelContainer.clientHeight);
+        modelContainer.appendChild(renderer.domElement);
+
+        // Add lighting to the scene
+        const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+        scene.add(ambientLight);
+
+        const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+        pointLight.position.set(10, 10, 10);
+        scene.add(pointLight);
+
+        // Load a GLTF model
+        const loader = new GLTFLoader();
+        loader.load('./scene.gltf', (gltf) => {
+            scene.add(gltf.scene);
+            gltf.scene.position.set(0, 0, 0); // Adjust model position as needed
+            gltf.scene.scale.set(1, 1, 1); // Adjust scale if necessary
+        }, undefined, (error) => {
+            console.error('An error occurred while loading the model:', error);
+        });
+
+        camera.position.z = 5;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        // Adjust camera and renderer on window resize
+        window.addEventListener('resize', () => {
+            renderer.setSize(modelContainer.clientWidth, modelContainer.clientHeight);
+            camera.aspect = modelContainer.clientWidth / modelContainer.clientHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        // Start animation
+        animate();
+    </script>
+</body>
+</html>

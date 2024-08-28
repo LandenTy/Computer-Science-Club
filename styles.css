@@ -1,0 +1,203 @@
+/* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #ccc;
+    background-color: #121212;
+    overflow-x: hidden;
+}
+
+/* Navigation styles */
+nav {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+nav:hover {
+    background-color: #333;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ff5722;
+}
+
+/* Hero section */
+.hero {
+    position: relative;
+    background: #000; /* Black background for entire Home section */
+    color: #fff;
+    padding: 5rem 1rem;
+    height: calc(100vh + 25px); /* Make the hero section 450px taller */
+    text-align: right; /* Right-align text inside the hero section */
+    overflow: hidden;
+    animation: fadeIn 2s ease-in;
+}
+
+/* Model Container */
+#model-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50%; /* Adjust width as needed */
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background to blend with the page */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hero content */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-left: auto; /* Pushes the content to the right side */
+    margin-right: 2rem; /* Space between the content and the right edge of the viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Right-aligns the content */
+    justify-content: center;
+    height: 100%;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    animation: slideUp 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    animation: slideUp 1.5s ease-out;
+}
+
+.btn {
+    background-color: #ff5722;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: scaleIn 0.5s ease-out;
+}
+
+.btn:hover {
+    background-color: #e64a19;
+    transform: scale(1.1);
+}
+
+/* About section */
+.about, .join {
+    padding: 3rem 1rem;
+    background-color: #1e1e1e;
+    color: #ccc;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+}
+
+.about h2, .join h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    animation: slideUp 1s ease-out;
+}
+
+.about p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* Join section */
+.join ul {
+    list-style: none;
+    padding: 0;
+}
+
+.join ul li {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    animation: fadeIn 2s ease-in;
+}
+
+/* Footer */
+footer {
+    background-color: #1e1e1e;
+    color: #ccc;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
